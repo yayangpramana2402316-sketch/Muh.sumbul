@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for student or admin in Arabic learning app",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "photoURL": { "type": "string", "maxLength": 500 },
+        "nis": { "type": "string", "maxLength": 50 },
+        "completedChapters": { "type": "array" },
+        "totalScore": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "lastActive": { "type": "string" }
+      },
+      "required": ["uid", "displayName", "role"]
+    },
+    "QuizResult": {
+      "title": "QuizResult",
+      "description": "Student quiz submission record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 100 },
+        "userEmail": { "type": "string", "maxLength": 150 },
+        "chapterId": { "type": "string", "maxLength": 50 },
+        "chapterTitle": { "type": "string", "maxLength": 100 },
+        "score": { "type": "number" },
+        "correctCount": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "chapterId", "score"]
+    },
+    "CustomVocab": {
+      "title": "CustomVocab",
+      "description": "Additional Arabic vocabulary created by teacher or admin",
+      "type": "object",
+      "properties": {
+        "arabic": { "type": "string", "maxLength": 200 },
+        "transliteration": { "type": "string", "maxLength": 200 },
+        "meaning": { "type": "string", "maxLength": 200 },
+        "chapterId": { "type": "string", "maxLength": 50 },
+        "exampleSentence": { "type": "string", "maxLength": 500 },
+        "createdBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["arabic", "meaning"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Teacher announcement for students",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 150 },
+        "content": { "type": "string", "maxLength": 1000 },
+        "teacherName": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles for enrolled students and admins"
+    },
+    "/quizResults/{resultId}": {
+      "schema": "QuizResult",
+      "description": "Record of student test and quiz achievements"
+    },
+    "/customVocabs/{vocabId}": {
+      "schema": "CustomVocab",
+      "description": "Supplemental vocabulary entries managed by teachers"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "School or class announcements"
+    }
+  }
+}

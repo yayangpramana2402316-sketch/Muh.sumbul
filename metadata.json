@@ -1,0 +1,6 @@
+{
+  "name": "Al-Arabiyyah IX - Pembelajaran Bahasa Arab Kelas 9",
+  "description": "Aplikasi pembelajaran interaktif Bahasa Arab untuk siswa Kelas IX MTs/SMP dengan materi lengkap, mufrodat bersuara, kuis interaktif, AI Ustadz Tutor, dan portal admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
